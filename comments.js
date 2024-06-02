@@ -1,25 +1,44 @@
 //create web server
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-
-//parse json
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 //create comments array
-var comments = [
-  { id: 1, author: "Adam", text: "Hello" },
-  { id: 2, author: "Dave", text: "Howdy" },
-  { id: 3, author: "Steve", text: "Hi" }
-];
+const comments = [
+    {username: 'Tom', comment: 'Hello'}]
 
-//get comments
-app.get("/comments", function(req, res) {
-  res.json(comments);
+//create get request
+app.get('/comments', (req, res) => {
+    res.json(comments);
 });
 
-//add comments
-app.post("/comments", function(req, res) {
-  var newComment = {
-    id: comments.length + 1,  };
+//create post request
+app.post('/comments', (req, res) => {
+    const comment = req.body;
+    comments.push(comment);
+    res.json(comment);
 });
+
+//create put request
+app.put('/comments/:index', (req, res) => {
+    const {index} = req.params;
+    const comment = req.body;
+    comments[index] = comment;
+    res.json(comment);
+});
+
+//create delete request
+app.delete('/comments/:index', (req, res) => {
+    const {index} = req.params;
+    const deletedComment = comments.splice(index, 1);
+    res.json(deletedComment);
+});
+
+//create listening port
+app.listen(3000, () => {
+    console.log('Server is listening on port 3000');
+});
+
+//run the server by using node comments.js
+//use postman to test the
