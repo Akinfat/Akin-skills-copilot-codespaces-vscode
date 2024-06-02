@@ -1,93 +1,25 @@
 //create web server
-const express = require('express');
-const app = express();
-const port = 3000;
+var express = require("express");
+var app = express();
+var bodyParser = require("body-parser");
 
-//create a route
-app.get('/comments', (req, res) => {
-  res.send('Comments page');
+//parse json
+app.use(bodyParser.json());
+
+//create comments array
+var comments = [
+  { id: 1, author: "Adam", text: "Hello" },
+  { id: 2, author: "Dave", text: "Howdy" },
+  { id: 3, author: "Steve", text: "Hi" }
+];
+
+//get comments
+app.get("/comments", function(req, res) {
+  res.json(comments);
 });
 
-//start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+//add comments
+app.post("/comments", function(req, res) {
+  var newComment = {
+    id: comments.length + 1,  };
 });
-// Path: index.js
-//create web server
-const express = require('express');
-const app = express();
-const port = 3000;
-
-//create a route
-app.get('/', (req, res) => {
-  res.send('Home page');
-});
-
-//start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-// Path: posts.js
-//create web server
-const express = require('express');
-const app = express();
-const port = 3000;
-
-//create a route
-app.get('/posts', (req, res) => {
-  res.send('Posts page');
-});
-
-//start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-// Path: index.js
-//create web server
-const express = require('express');
-const app = express();
-const port = 3000;
-
-//create a route
-app.get('/', (req, res) => {
-  res.send('Home page');
-});
-
-//start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-// Path: posts.js
-//create web server
-const express = require('express');
-const app = express();
-const port = 3000;
-
-//create a route
-app.get('/posts', (req, res) => {
-  res.send('Posts page');
-});
-
-//start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-// Path: comments.js
-//create web server
-const express = require('express');
-const app = express();
-const port = 3000;
-
-//create a route
-app.get('/comments', (req, res) => {
-  res.send('Comments page');
-});
-
-//start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-// Path: index.js
-//create web server
-const express = require('express');
-const app = express
